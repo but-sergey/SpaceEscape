@@ -4,7 +4,7 @@ namespace SpaceEscape
 {
     internal sealed class Controllers : IInitialization, IExecute, ILateExecute, ICleanup
     {
-        private readonly int _controllersInitCount = 10;
+        private readonly int _controllersInitCount = 8;
         private readonly List<IInitialization> _initializationControllers;
         private readonly List<IExecute> _executeControllers;
         private readonly List<ILateExecute> _lateControllers;

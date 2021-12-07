@@ -36,7 +36,7 @@ namespace SpaceEscape
         public void Execute(float deltaTime)
         {
             var speed = deltaTime * _unitData.Speed;
-            _move.Set(_horizontal * speed, 0.0f, _vertical * speed);
+            _move.Set(_horizontal * speed, _vertical * speed, 0.0f);
             _unit.localPosition += _move;
         }
 
