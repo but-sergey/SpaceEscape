@@ -1,4 +1,4 @@
-﻿namespace RollABall
+﻿namespace SpaceEscape
 {
     public static class AxisManager
     {

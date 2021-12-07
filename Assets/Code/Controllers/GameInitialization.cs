@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RollABall
+namespace SpaceEscape
 {
     internal sealed class GameInitialization
     {

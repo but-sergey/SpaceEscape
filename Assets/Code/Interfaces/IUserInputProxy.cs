@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RollABall
+namespace SpaceEscape
 {
     public interface IUserInputProxy
     {

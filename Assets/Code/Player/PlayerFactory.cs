@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RollABall
+namespace SpaceEscape
 {
     public sealed class PlayerFactory : IPlayerFactory
     {

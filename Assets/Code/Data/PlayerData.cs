@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RollABall
+namespace SpaceEscape
 {
     [CreateAssetMenu(fileName = "UnitSettings", menuName = "Data/Unit/UnitSettings")]
     public sealed class PlayerData : ScriptableObject

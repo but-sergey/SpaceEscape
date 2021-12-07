@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using UnityEngine;
 
-namespace RollABall
+namespace SpaceEscape
 {
     [CreateAssetMenu(fileName = "Data", menuName = "Data/Data")]
     public sealed class Data : ScriptableObject

@@ -1,4 +1,4 @@
-﻿namespace RollABall
+﻿namespace SpaceEscape
 {
     enum BonusTypes
     {

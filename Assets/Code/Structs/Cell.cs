@@ -1,4 +1,4 @@
-﻿namespace RollABall
+﻿namespace SpaceEscape
 {
     public struct MapCell
     {

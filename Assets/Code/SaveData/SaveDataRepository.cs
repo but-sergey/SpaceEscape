@@ -2,7 +2,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace RollABall
+namespace SpaceEscape
 {
     public sealed class SaveDataRepository : ISaveDataRepository
     {

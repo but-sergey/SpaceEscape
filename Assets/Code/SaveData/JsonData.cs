@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using UnityEngine;
 
-namespace RollABall
+namespace SpaceEscape
 {
     public class JsonData<T> : IData<T>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace RollABall
+namespace SpaceEscape
 {
     [Serializable]
     public sealed class SavedData
