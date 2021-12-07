@@ -6,7 +6,7 @@ namespace SpaceEscape
     {
         public GameInitialization(Controllers controllers, Data data)
         {
-            Camera camera = Camera.main;
+            //Camera camera = Camera.main;
 
             var inputInitialization = new InputInitialization();
             var playerModel = new PlayerModel(data.Player.PlayerSprite, data.Player.Speed, data.Player.Position, data.Player.Name);
