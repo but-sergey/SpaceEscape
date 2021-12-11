@@ -12,11 +12,12 @@ namespace SpaceEscape
             var playerModel = new PlayerModel(data.Player.PlayerPrefab, data.Player.Speed, data.Player.Position, data.Player.Name);
             var playerFactory = new PlayerFactory(playerModel);
             var playerInitialization = new PlayerInitialization(playerFactory, playerModel.Position);
-            var enemyFactory = new EnemyFactory(data.Enemies.EnemyTypesList, 20);
+            //var enemyFactory = new EnemyFactory(data.Enemies.EnemyTypesList, data.Level.AsteroidCount);
+            var enemyFactory = new EnemyFactory();
 
             controllers.Add(inputInitialization);
             controllers.Add(playerInitialization);
-            controllers.Add(new EnemiesController(enemyFactory.CreateEnemy()));
+            controllers.Add(new EnemiesController(enemyFactory, data.Level, data.Enemies));
 
             //controllers.Add(new CameraInitialization(camera.transform, playerModel.Position));
             controllers.Add(new InputController(playerInitialization.GetPlayer(), inputInitialization.GetInput()));
