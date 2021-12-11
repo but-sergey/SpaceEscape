@@ -6,20 +6,22 @@ namespace SpaceEscape
     {
         public GameInitialization(Controllers controllers, Data data)
         {
-            //Camera camera = Camera.main;
-
             var inputInitialization = new InputInitialization();
             var playerModel = new PlayerModel(data.Player.PlayerSprite, data.Player.Speed, data.Player.Position, data.Player.Name);
+            var bulletModel = new BulletModel(data.Bullet.BulletSprite, data.Bullet.Force, data.Bullet.FireOffset, data.Bullet.Name);
             var playerFactory = new PlayerFactory(playerModel);
+            var bulletFactory = new BulletFactory(bulletModel);
             var playerInitialization = new PlayerInitialization(playerFactory, playerModel.Position);
+            var bulletController = new BulletController(bulletFactory, playerInitialization.GetPlayer(), bulletModel.FireOffset);
+            var fireController = new FireController(bulletController, bulletModel);
 
             controllers.Add(inputInitialization);
             controllers.Add(playerInitialization);
+            controllers.Add(bulletController);
+            controllers.Add(fireController);
 
-            //controllers.Add(new CameraInitialization(camera.transform, playerModel.Position));
-            controllers.Add(new InputController(playerInitialization.GetPlayer(), inputInitialization.GetInput()));
+            controllers.Add(new InputController(playerInitialization.GetPlayer(), inputInitialization.GetInput(), fireController));
             controllers.Add(new MoveController(inputInitialization.GetInput(), playerInitialization.GetPlayer(), playerModel));
-            //controllers.Add(new CameraController(playerInitialization.GetPlayer(), camera.transform));
         }
     }
 }

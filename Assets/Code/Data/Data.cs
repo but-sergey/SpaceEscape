@@ -8,9 +8,11 @@ namespace SpaceEscape
     {
         [SerializeField] private string _playerDataPath;
         [SerializeField] private string _levelDataPath;
+        [SerializeField] private string _bulletDataPath;
 
         private PlayerData _player;
         private LevelData _level;
+        private BulletData _bullet;
 
         public PlayerData Player
         {
@@ -35,6 +37,19 @@ namespace SpaceEscape
                 }
 
                 return _level;
+            }
+        }
+
+        public BulletData Bullet
+        {
+            get
+            {
+                if(_bullet == null)
+                {
+                    _bullet = Load<BulletData>(Path.Combine("Data", _bulletDataPath));
+                }
+
+                return _bullet;
             }
         }
 
