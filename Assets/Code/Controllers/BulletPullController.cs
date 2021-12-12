@@ -10,9 +10,9 @@ namespace SpaceEscape
         private readonly Transform _player;
         private readonly Vector2 _firePointOffset;
 
-        private List<(Transform bullet, Collider2D collider, int force)> _bulletList;
+        private List<BulletGameData> _bulletList;
 
-        public List<(Transform bullet, Collider2D collider, int force)> GetBulletList
+        public List<BulletGameData> GetBulletList
         {
             get
             {
@@ -29,7 +29,7 @@ namespace SpaceEscape
 
         public void Initialization()
         {
-            _bulletList = new List<(Transform bullet, Collider2D collider, int force)>(SystemSettingsManager.BULLET_PULL_INITIAL_CAPACITY);
+            _bulletList = new List<BulletGameData>(SystemSettingsManager.BULLET_PULL_INITIAL_CAPACITY);
 
             for(int i = 0; i < SystemSettingsManager.BULLET_PULL_INITIAL_CAPACITY; i++)
             {
@@ -39,52 +39,52 @@ namespace SpaceEscape
             }
         }
 
-        public void OffBullet((Transform bullet, Collider2D collider, int force) bulletData)
+        public void OffBullet(BulletGameData bulletData)
         {
-            bulletData.bullet.gameObject.SetActive(false);
+            bulletData.Bullet.gameObject.SetActive(false);
         }
 
-        public (Transform bullet, Collider2D collider, int force) CreateBullet()
+        public BulletGameData CreateBullet()
         {
-            (Transform bullet, Collider2D collider, int force) bulletData = (null, null, 0);
+            var bulletData = new BulletGameData();
 
-            bulletData.bullet = _bulletFactory.CreateBullet();
-            bulletData.collider = bulletData.bullet.GetComponent<Collider2D>();
+            bulletData.Bullet = _bulletFactory.CreateBullet();
+            bulletData.Collider = bulletData.Bullet.GetComponent<Collider2D>();
+            bulletData.RigidBody = bulletData.Bullet.GetComponent<Rigidbody2D>();
 
             return bulletData;
         }
 
-        public Transform GetBullet(int force)
+        public BulletGameData GetBullet(int force)
         {
-            (Transform bullet, Collider2D collider, int force) bulletData = (null, null, 0);
+            BulletGameData bulletData = null;
 
             for(int i = 0; i < _bulletList.Count; i++)
             {
-                if(!_bulletList[i].bullet.gameObject.activeSelf)
+                if(!_bulletList[i].Bullet.gameObject.activeSelf)
                 {
                     bulletData = _bulletList[i];
                     break;
                 }
             }
 
-            if(bulletData.bullet == null)
+            if(bulletData == null)
             {
                 bulletData = CreateBullet();
-                bulletData.force = force;
-
                 _bulletList.Add(bulletData);
             }
             else
             {
-                bulletData.bullet.gameObject.SetActive(true);
+                bulletData.Bullet.gameObject.SetActive(true);
             }
 
-            bulletData.bullet.position = new Vector3(
+            bulletData.Force = force;
+            bulletData.Bullet.position = new Vector3(
                 _player.position.x + _firePointOffset.x,
                 _player.position.y + _firePointOffset.y,
                 0.0f);
 
-            return bulletData.bullet;
+            return bulletData;
         }
     }
 }

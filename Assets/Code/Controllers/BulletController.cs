@@ -26,9 +26,9 @@ namespace SpaceEscape
         {
             foreach (var bulletData in _bulletPullController.GetBulletList)
             {
-                if (!GeometryUtility.TestPlanesAABB(_planes, bulletData.collider.bounds))
+                if (!GeometryUtility.TestPlanesAABB(_planes, bulletData.Collider.bounds))
                 {
-                    bulletData.bullet.gameObject.SetActive(false);
+                    bulletData.Bullet.gameObject.SetActive(false);
                 }
 
                 // todo: проверка на столкновение с астероидом

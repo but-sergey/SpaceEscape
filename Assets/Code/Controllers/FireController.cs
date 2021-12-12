@@ -17,8 +17,7 @@ namespace SpaceEscape
         {
             var bullet = _bulletPullController.GetBullet(_bulletModel.Force);
 
-            var bulletRigidBody = bullet.GetComponent<Rigidbody2D>();    // не нравится мне эта хрень...
-            bulletRigidBody?.AddForce(_bulletModel.Speed, ForceMode2D.Impulse);
+            bullet.RigidBody.AddForce(_bulletModel.Speed, ForceMode2D.Impulse);
         }
     }
 }
