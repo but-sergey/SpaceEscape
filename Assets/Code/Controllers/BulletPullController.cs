@@ -34,25 +34,14 @@ namespace SpaceEscape
             for(int i = 0; i < SystemSettingsManager.BULLET_PULL_INITIAL_CAPACITY; i++)
             {
                 var bulletData = CreateBullet();
-                OffBullet(bulletData);
+                BulletOff(bulletData);
                 _bulletList.Add(bulletData);
             }
         }
 
-        public void OffBullet(BulletGameData bulletData)
+        public void BulletOff(BulletGameData bulletData)
         {
             bulletData.Bullet.gameObject.SetActive(false);
-        }
-
-        public BulletGameData CreateBullet()
-        {
-            var bulletData = new BulletGameData();
-
-            bulletData.Bullet = _bulletFactory.CreateBullet();
-            bulletData.Collider = bulletData.Bullet.GetComponent<Collider2D>();
-            bulletData.RigidBody = bulletData.Bullet.GetComponent<Rigidbody2D>();
-
-            return bulletData;
         }
 
         public BulletGameData GetBullet(int force)
@@ -86,5 +75,17 @@ namespace SpaceEscape
 
             return bulletData;
         }
+
+        private BulletGameData CreateBullet()
+        {
+            var bulletData = new BulletGameData();
+
+            bulletData.Bullet = _bulletFactory.CreateBullet();
+            bulletData.Collider = bulletData.Bullet.GetComponent<Collider2D>();
+            bulletData.RigidBody = bulletData.Bullet.GetComponent<Rigidbody2D>();
+
+            return bulletData;
+        }
+
     }
 }

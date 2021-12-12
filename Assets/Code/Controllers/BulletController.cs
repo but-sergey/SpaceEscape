@@ -2,33 +2,25 @@
 
 namespace SpaceEscape
 {
-    public sealed class BulletController : IInitialization, IExecute
+    public sealed class BulletController : IExecute
     {
-        // необходимо вынести камеру в отдельный контроллер и проверять нахождение пуль в поле экрана там
-
         private readonly BulletPullController _bulletPullController;
+        private readonly CameraController _cameraController;
 
-        private Camera _camera;
-        private Plane[] _planes;
-
-        public BulletController(BulletPullController bulletPullController)
+        public BulletController(BulletPullController bulletPullController, CameraController cameraController)
         {
             _bulletPullController = bulletPullController;
-        }
-
-        public void Initialization()
-        {
-            _camera = Camera.main;
-            _planes = GeometryUtility.CalculateFrustumPlanes(_camera);
+            _cameraController = cameraController;
         }
 
         public void Execute(float deltaTime)
         {
             foreach (var bulletData in _bulletPullController.GetBulletList)
             {
-                if (!GeometryUtility.TestPlanesAABB(_planes, bulletData.Collider.bounds))
+                if (!_cameraController.CheckObjectInsideFrustum(bulletData.Collider))
                 {
-                    bulletData.Bullet.gameObject.SetActive(false);
+                     bulletData.Bullet.gameObject.SetActive(false);
+                    _bulletPullController.BulletOff(bulletData);
                 }
 
                 // todo: проверка на столкновение с астероидом

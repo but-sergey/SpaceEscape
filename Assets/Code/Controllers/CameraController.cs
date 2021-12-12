@@ -2,23 +2,24 @@
 
 namespace SpaceEscape
 {
-    internal sealed class CameraController : ILateExecute
+    public sealed class CameraController : IInitialization
     {
-        private readonly Transform _player;
-        private readonly Transform _mainCamera;
-        private readonly Vector3 _offset;
+        private Camera _camera;
+        private Plane[] _planes;
 
-        public CameraController(Transform player, Transform mainCamera)
+        public CameraController(Camera camera)
         {
-            _player = player;
-            _mainCamera = mainCamera;
-            _offset = _mainCamera.position - _player.position;
+            _camera = camera;
         }
 
-        public void LateExecute(float deltaTime)
+        public void Initialization()
         {
-            _mainCamera.position = _player.position + _offset;
-            _mainCamera.LookAt(_player.position);
+            _planes = GeometryUtility.CalculateFrustumPlanes(_camera);
+        }
+
+        public bool CheckObjectInsideFrustum(Collider2D collider)
+        {
+            return GeometryUtility.TestPlanesAABB(_planes, collider.bounds);
         }
     }
 }
