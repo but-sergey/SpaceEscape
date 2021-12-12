@@ -13,11 +13,16 @@ namespace SpaceEscape
 
         public Transform CreateBullet()
         {
-            return new GameObject(_bulletData.Name)
+            var bullet = new GameObject(_bulletData.Name)
                 .AddSprite(_bulletData.BulletSprite)
                 .AddCircleCollider2D()
                 .AddRigidBody2D()
                 .transform;
+
+            var rigidBody = bullet.GetComponent<Rigidbody2D>();
+            rigidBody.freezeRotation = true;
+
+            return bullet;
         }
     }
 }
