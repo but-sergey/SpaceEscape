@@ -8,11 +8,11 @@ namespace SpaceEscape
         {
             var inputInitialization = new InputInitialization();
             var playerModel = new PlayerModel(data.Player.PlayerSprite, data.Player.Speed, data.Player.Position, data.Player.Name);
-            var bulletModel = new BulletModel(data.Bullet.BulletSprite, data.Bullet.Force, data.Bullet.FireOffset, data.Bullet.Name);
+            var bulletModel = new BulletModel(data.Bullet.BulletSprite, data.Bullet.Name, data.Bullet.FirePointOffset, data.Bullet.Speed, data.Bullet.Force);
             var playerFactory = new PlayerFactory(playerModel);
             var bulletFactory = new BulletFactory(bulletModel);
             var playerInitialization = new PlayerInitialization(playerFactory, playerModel.Position);
-            var bulletController = new BulletController(bulletFactory, playerInitialization.GetPlayer(), bulletModel.FireOffset);
+            var bulletController = new BulletController(bulletFactory, playerInitialization.GetPlayer(), bulletModel.FirePointOffset);
             var fireController = new FireController(bulletController, bulletModel);
 
             controllers.Add(inputInitialization);

@@ -15,11 +15,10 @@ namespace SpaceEscape
 
         public void Fire()
         {
-            //Debug.Log("Fire!!!");
             var bullet = _bulletController.GetBullet();
-            var bulletRigidBody = bullet.GetComponent<Rigidbody2D>();
-            if (bulletRigidBody != null)
-                bulletRigidBody.AddForce(new Vector2(0.0f, _bulletModel.Force), ForceMode2D.Impulse);
+
+            var bulletRigidBody = bullet.GetComponent<Rigidbody2D>();    // не нравится мне эта хрень...
+            bulletRigidBody?.AddForce(_bulletModel.Speed, ForceMode2D.Impulse);
         }
     }
 }
