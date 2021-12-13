@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e548254edf812fa4cbd60a7ec60987e2, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
-  _levelName: Level_1
+  _levelName: Level1
   _asteroidSpeed: 3
   _asteroidCount: 20
   _asteroidDensity: 5
