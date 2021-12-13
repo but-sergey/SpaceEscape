@@ -3,29 +3,31 @@ using UnityEngine;
 public sealed class Enemy
 {
     private GameObject _enemyPrefab;
-    private float _enemyHealth;
-    private float _enemyDamage;
+    private int _enemyHealth;
+    private int _enemyDamage;
     private float _enemySpeed;
+    private int _enemyScore;
 
-    public Enemy(GameObject enemyPrefab, float enemyHealth, float enemyDamage, float enemySpeed)
+    public Enemy(GameObject enemyPrefab, int enemyHealth, int enemyDamage, float enemySpeed, int enemyScore)
     {
 
         _enemyPrefab = GameObject.Instantiate(enemyPrefab);
         _enemyHealth = enemyHealth;
         _enemyDamage = enemyDamage;
         _enemySpeed = enemySpeed;
-        
+        _enemyScore = enemyScore;
+
     }
-    public GameObject EnemyPrefab 
-    { 
-        get 
+    public GameObject EnemyPrefab
+    {
+        get
         {
-            
-            return _enemyPrefab; 
-        } 
+
+            return _enemyPrefab;
+        }
     }
-    
-    public float EnemyHealth
+
+    public int EnemyHealth
     {
         get
         {
@@ -37,7 +39,7 @@ public sealed class Enemy
         }
     }
 
-    public float EnemyDamage
+    public int EnemyDamage
     {
         get
         {
@@ -60,5 +62,19 @@ public sealed class Enemy
             _enemySpeed = value;
         }
     }
+
+    public int EnemyScore
+    {
+        get
+        {
+            return _enemyScore;
+        }
+        set
+        {
+            _enemyScore = value;
+        }
+    }
+    
+    
     
 }

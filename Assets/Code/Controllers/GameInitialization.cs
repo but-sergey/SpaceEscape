@@ -16,7 +16,8 @@ namespace SpaceEscape
 
             controllers.Add(inputInitialization);
             controllers.Add(playerInitialization);
-            controllers.Add(new EnemiesController(enemyFactory, data.Level, data.Enemies));
+            //controllers.Add(new EnemiesController(enemyFactory, data.Level, data.Enemies));
+            controllers.Add(new EnemiesController(enemyFactory, data));
 
             //controllers.Add(new CameraInitialization(camera.transform, playerModel.Position));
             controllers.Add(new InputController(playerInitialization.GetPlayer(), inputInitialization.GetInput()));

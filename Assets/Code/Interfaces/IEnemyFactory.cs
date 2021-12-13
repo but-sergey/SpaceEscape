@@ -3,6 +3,6 @@ namespace SpaceEscape
 {
     public interface IEnemyFactory
     {
-        Enemy CreateEnemy(GameObject prefab, float health, float damage, float speed);
+        Enemy CreateEnemy(GameObject prefab, int health, int damage, float speed, int score);
     }
 }
