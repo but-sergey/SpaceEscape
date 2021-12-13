@@ -17,6 +17,12 @@ namespace SpaceEscape
             return gameObject;
         }
 
+        public static GameObject AddRigidBody2D(this GameObject gameObject)
+        {
+            gameObject.GetOrAddComponent<Rigidbody2D>();
+            return gameObject;
+        }
+
         public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
         {
             var result = gameObject.GetComponent<T>();

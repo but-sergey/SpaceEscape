@@ -1,6 +1,6 @@
 ﻿namespace SpaceEscape
 {
-    internal interface IController
+    public interface IController
     {
     }
 }

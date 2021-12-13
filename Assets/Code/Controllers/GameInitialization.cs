@@ -6,20 +6,28 @@ namespace SpaceEscape
     {
         public GameInitialization(Controllers controllers, Data data)
         {
-            //Camera camera = Camera.main;
+            var mainCamera = Camera.main;
 
+            var cameraController = new CameraController(mainCamera);
             var inputInitialization = new InputInitialization();
             var playerModel = new PlayerModel(data.Player.PlayerSprite, data.Player.Speed, data.Player.Position, data.Player.Name);
+            var bulletModel = new BulletModel(data.Bullet.BulletSprite, data.Bullet.Name, data.Bullet.FirePointOffset, data.Bullet.Speed, data.Bullet.Force);
             var playerFactory = new PlayerFactory(playerModel);
+            var bulletFactory = new BulletFactory(bulletModel);
             var playerInitialization = new PlayerInitialization(playerFactory, playerModel.Position);
+            var bulletPullController = new BulletPullController(bulletFactory, playerInitialization.GetPlayer(), bulletModel.FirePointOffset);
+            var bulletController = new BulletController(bulletPullController, cameraController);
+            var fireController = new FireController(bulletPullController, bulletModel);
 
+            controllers.Add(cameraController);
             controllers.Add(inputInitialization);
             controllers.Add(playerInitialization);
+            controllers.Add(bulletPullController);
+            controllers.Add(bulletController);
+            controllers.Add(fireController);
 
-            //controllers.Add(new CameraInitialization(camera.transform, playerModel.Position));
-            controllers.Add(new InputController(playerInitialization.GetPlayer(), inputInitialization.GetInput()));
-            controllers.Add(new MoveController(inputInitialization.GetInput(), playerInitialization.GetPlayer(), playerModel));
-            //controllers.Add(new CameraController(playerInitialization.GetPlayer(), camera.transform));
+            controllers.Add(new InputController(playerInitialization.GetPlayer(), inputInitialization.GetInput(), fireController));
+            controllers.Add(new MoveController(inputInitialization.GetInput(), playerInitialization.GetPlayer(), playerModel, cameraController));
         }
     }
 }

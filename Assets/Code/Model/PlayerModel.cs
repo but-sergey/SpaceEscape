@@ -6,10 +6,10 @@ namespace SpaceEscape
     {
         public Sprite PlayerSprite { get; }
         public float Speed { get; }
-        public Vector3 Position { get; }
+        public Vector2 Position { get; }
         public string Name { get; }
 
-        public PlayerModel(Sprite playerSprite, float speed, Vector3 position, string name)
+        public PlayerModel(Sprite playerSprite, float speed, Vector2 position, string name)
         {
             PlayerSprite = playerSprite;
             Speed = speed;
