@@ -78,7 +78,7 @@ namespace SpaceEscape
             enemiesOnScreenPool.Add(enemyToAdd);
             enemiesLevelPool.Remove(enemyToAdd);
             _enemiesToMax++;
-            Debug.Log($"Asteroids: {_enemiesToMax} from {_levelData.AsteroidCount}");
+            //Debug.Log($"Asteroids: {_enemiesToMax} from {_levelData.AsteroidCount}");
         }
 
         private void ReleaseToPool(Enemy enemyForRelease, List<Enemy> enemiesLevelPool, List<Enemy> enemiesOsScreenPool)

@@ -47,13 +47,14 @@ namespace SpaceEscape
         {
             get
             {
-                if(_bullet == null)
+                if (_bullet == null)
                 {
                     _bullet = Load<BulletData>(Path.Combine("Data", _bulletDataPath));
                 }
 
                 return _bullet;
             }
+        }
             
         public EnemyData Enemies
         {
