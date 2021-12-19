@@ -13,10 +13,9 @@ namespace SpaceEscape
 
         public Transform CreatePlayer()
         {
-            return new GameObject(_playerData.Name)
-                .AddSprite(_playerData.PlayerSprite)
-                .AddCircleCollider2D()
-                .transform;
+            GameObject player = GameObject.Instantiate(_playerData.PlayerPrefab);
+
+            return player.transform;
         }
     }
 }

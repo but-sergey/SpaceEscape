@@ -15,3 +15,4 @@ MonoBehaviour:
   _playerDataPath: Player
   _levelDataPath: Level1
   _bulletDataPath: MainBullet
+  _enemyDataPath: EnemyData
