@@ -11,7 +11,7 @@ namespace SpaceEscape
             var cameraController = new CameraController(mainCamera);
             var inputInitialization = new InputInitialization();
             //var playerModel = new PlayerModel(data.Player.PlayerSprite, data.Player.Speed, data.Player.Position, data.Player.Name);
-            var bulletModel = new BulletModel(data.Bullet.BulletSprite, data.Bullet.Name, data.Bullet.FirePointOffset, data.Bullet.Speed, data.Bullet.Force);
+            var bulletModel = new BulletModel(data.Bullet);
             var playerModel = new PlayerModel(data.Player.PlayerPrefab, data.Player.Speed, data.Player.Position, data.Player.Name);
             var playerFactory = new PlayerFactory(playerModel);
             var bulletFactory = new BulletFactory(bulletModel);

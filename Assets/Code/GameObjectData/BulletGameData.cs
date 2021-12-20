@@ -7,6 +7,6 @@ namespace SpaceEscape
         public Transform Bullet;
         public Collider2D Collider;
         public Rigidbody2D RigidBody;
-        public int Force;
+        public float Force;
     }
 }

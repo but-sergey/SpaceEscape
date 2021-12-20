@@ -7,16 +7,18 @@ namespace SpaceEscape
         public Sprite BulletSprite { get; }
         public string Name { get; }
         public Vector2 Speed { get; }
-        public int Force { get; }
+        public float Force { get; }
+        public float BulletMass { get; }
         public Vector2 FirePointOffset { get; }
 
-        public BulletModel(Sprite bulletSprite, string name, Vector2 firePointOffset, Vector2 speed, int force)
+        public BulletModel(BulletData bulletData)
         {
-            BulletSprite = bulletSprite;
-            Name = name;
-            FirePointOffset = firePointOffset;
-            Speed = speed;
-            Force = force;
+            BulletSprite = bulletData.BulletSprite;
+            Name = bulletData.Name;
+            FirePointOffset = bulletData.FirePointOffset;
+            Speed = bulletData.Speed;
+            Force = bulletData.Force;
+            BulletMass = bulletData.BulletMass;
         }
     }
 }

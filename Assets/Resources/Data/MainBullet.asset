@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa200b41e50252e4e8255fa8d0d84b8b, type: 3}
   m_Name: MainBullet
   m_EditorClassIdentifier: 
-  BulletSprite: {fileID: 21300000, guid: 741a59f74e23af748abf37db3b9e68d6, type: 3}
+  BulletSprite: {fileID: 21300000, guid: fc77ee9904bad6b42a30dfbf269e6b7d, type: 3}
   _name: Bullet
-  _force: 20
-  _fireOffset: {x: 0, y: 1}
+  _firePointOffset: {x: 0, y: 0.5}
+  _speed: {x: 0, y: 0.05}
+  _bulletMass: 0.001
+  _force: 0.002

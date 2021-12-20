@@ -8,6 +8,7 @@ namespace SpaceEscape
         public string Name { get; }
         public Vector2 FirePointOffset { get; }
         public Vector2 Speed { get; }
-        public int Force { get; }
+        public float Force { get; }
+        public float BulletMass { get; }
     }
 }

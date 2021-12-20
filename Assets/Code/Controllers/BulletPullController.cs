@@ -44,7 +44,7 @@ namespace SpaceEscape
             bulletData.Bullet.gameObject.SetActive(false);
         }
 
-        public BulletGameData GetBullet(int force)
+        public BulletGameData GetBullet(float force)
         {
             BulletGameData bulletData = null;
 

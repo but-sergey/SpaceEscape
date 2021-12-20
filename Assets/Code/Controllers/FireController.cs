@@ -16,7 +16,7 @@ namespace SpaceEscape
         public void Fire()
         {
             var bullet = _bulletPullController.GetBullet(_bulletModel.Force);
-
+            bullet.RigidBody.mass = _bulletModel.BulletMass;
             bullet.RigidBody.AddForce(_bulletModel.Speed, ForceMode2D.Impulse);
         }
     }
