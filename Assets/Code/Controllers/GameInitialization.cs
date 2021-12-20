@@ -16,10 +16,15 @@ namespace SpaceEscape
             var playerFactory = new PlayerFactory(playerModel);
             var bulletFactory = new BulletFactory(bulletModel);
             var playerInitialization = new PlayerInitialization(playerFactory, playerModel.Position);
+            
+            
+
             var bulletPullController = new BulletPullController(bulletFactory, playerInitialization.GetPlayer(), bulletModel.FirePointOffset);
             var bulletController = new BulletController(bulletPullController, cameraController);
             var fireController = new FireController(bulletPullController, bulletModel);
+
             var enemyFactory = new EnemyFactory();
+            var enemiesController = new EnemiesController(enemyFactory, data, bulletPullController);
 
             controllers.Add(cameraController);
             controllers.Add(inputInitialization);
@@ -28,7 +33,7 @@ namespace SpaceEscape
             controllers.Add(bulletController);
             controllers.Add(fireController);
             //controllers.Add(new EnemiesController(enemyFactory, data.Level, data.Enemies));
-            controllers.Add(new EnemiesController(enemyFactory, data));
+            controllers.Add(enemiesController);
 
             controllers.Add(new InputController(playerInitialization.GetPlayer(), inputInitialization.GetInput(), fireController));
             controllers.Add(new MoveController(inputInitialization.GetInput(), playerInitialization.GetPlayer(), playerModel, cameraController));
