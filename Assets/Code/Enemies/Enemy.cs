@@ -8,6 +8,8 @@ public sealed class Enemy
     private float _enemySpeed;
     private int _enemyScore;
 
+    internal int EnemyCurrentHealth;
+
     public Enemy(GameObject enemyPrefab, int enemyHealth, int enemyDamage, float enemySpeed, int enemyScore)
     {
 
@@ -27,7 +29,7 @@ public sealed class Enemy
         }
     }
 
-    public int EnemyHealth
+    public int EnemyMaxHealth
     {
         get
         {

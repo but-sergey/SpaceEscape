@@ -26,6 +26,8 @@ namespace SpaceEscape
             var enemyFactory = new EnemyFactory();
             var enemiesController = new EnemiesController(enemyFactory, data, bulletPullController);
 
+            var scoreController = new ScoreController(enemiesController);
+
             controllers.Add(cameraController);
             controllers.Add(inputInitialization);
             controllers.Add(playerInitialization);
@@ -37,6 +39,9 @@ namespace SpaceEscape
 
             controllers.Add(new InputController(playerInitialization.GetPlayer(), inputInitialization.GetInput(), fireController));
             controllers.Add(new MoveController(inputInitialization.GetInput(), playerInitialization.GetPlayer(), playerModel, cameraController));
+
+            controllers.Add(scoreController);
+
         }
     }
 }

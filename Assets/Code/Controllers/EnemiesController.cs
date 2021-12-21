@@ -1,10 +1,11 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace SpaceEscape
 {
-    public class EnemiesController : IInitialization, IExecute
+    public class EnemiesController : IInitialization, IExecute, ICleanup
     {
         private EnemyFactory _enemyFactory;
         private LevelData _levelData;
@@ -16,7 +17,8 @@ namespace SpaceEscape
         private List<BulletGameData> _bulletGameData;
 
         internal List<Enemy> EnemiesOnMap;
-        
+
+        public Action<int> ScoreWasChanged;
         
         private int _enemiesToMax;
 
@@ -59,7 +61,7 @@ namespace SpaceEscape
                 Vector2 newpos = new Vector2(Random.Range(_tempXmin, _tempXmax), _tempY);
                 
                 enemy.EnemyPrefab.transform.position = newpos;
-                
+                enemy.EnemyCurrentHealth = enemy.EnemyMaxHealth;
                 _enemiesPoolList.Add(enemy);
                 enemy.EnemyPrefab.GetComponent<EnemyInteraction>().WhoCollideMe += OnBulletCollide;
                 enemy.EnemyPrefab.SetActive(false);
@@ -78,7 +80,7 @@ namespace SpaceEscape
         {
             Enemy enemyToAdd = enemiesLevelPool[enemiesPoolIndex];
             enemyToAdd.EnemyPrefab.SetActive(true);
-
+            enemyToAdd.EnemyCurrentHealth = enemyToAdd.EnemyMaxHealth;
             enemiesOnScreenPool.Add(enemyToAdd);
             enemiesLevelPool.Remove(enemyToAdd);
             _enemiesToMax++;
@@ -88,6 +90,7 @@ namespace SpaceEscape
         {
             enemyForRelease.EnemyPrefab.SetActive(false);
             enemyForRelease.EnemyPrefab.transform.position = new Vector2(Random.Range(_tempXmin, _tempXmax), _tempY);
+            enemyForRelease.EnemyCurrentHealth = enemyForRelease.EnemyMaxHealth;
             enemiesLevelPool.Add(enemyForRelease);
             enemiesOsScreenPool.Remove(enemyForRelease);
         }
@@ -100,20 +103,52 @@ namespace SpaceEscape
                 
             }
 
-            foreach(Enemy currenEnemy in EnemiesOnMap)
+            for(int k = 0; k <  EnemiesOnMap.Count; k++)
             {
-                currenEnemy.EnemyPrefab.transform.position -= new Vector3(0, currenEnemy.EnemySpeed, currenEnemy.EnemyPrefab.transform.position.z) * deltatime;
-              
+                EnemiesOnMap[k].EnemyPrefab.transform.position -= new Vector3(0, EnemiesOnMap[k].EnemySpeed, EnemiesOnMap[k].EnemyPrefab.transform.position.z) * deltatime;
+                if(EnemiesOnMap[k].EnemyCurrentHealth <= 0)
+                {
+                    ScoreWasChanged?.Invoke(EnemiesOnMap[k].EnemyScore);
+                    ReleaseToPool(EnemiesOnMap[k], _enemiesPoolList, EnemiesOnMap);
+                }
             }
+
+
         }
 
-        private void OnBulletCollide(int bulletInstanceId)
+        public void Cleanup()
         {
+            /*
+            if (Camera.main)
+            {
+                Camera.main.GetComponentInChildren<ColliderObserver>().CorrespondCollidedId -= OnAsteroidScreenHiding;
+            }
+            
+            for (int i = 0; i < _enemiesPoolList.Count; i++)
+            {
+                _enemiesPoolList[i].EnemyPrefab.GetComponent<EnemyInteraction>().WhoCollideMe -= OnBulletCollide;
+            }
+            */
+        }
+
+        private void OnBulletCollide(int callerInstanceId, int bulletInstanceId)
+        {
+            int bulletDamage = 0;
             for(int k = 0; k < _bulletGameData.Count; k++)
             {
                 if(_bulletGameData[k].Collider.gameObject.GetInstanceID() == bulletInstanceId)
                 {
                     _bulletGameData[k].Collider.gameObject.SetActive(false);
+                    bulletDamage = _bulletGameData[k].BulletDamage;
+                }
+            }
+
+            for (int j = 0; j < EnemiesOnMap.Count; j++)
+            {
+                if(callerInstanceId == EnemiesOnMap[j].EnemyPrefab.GetInstanceID())
+                {
+                    EnemiesOnMap[j].EnemyCurrentHealth -= bulletDamage;
+                    //Debug.Log($"{EnemiesOnMap[j].EnemyCurrentHealth}, damage: {bulletDamage}");
                 }
             }
         }

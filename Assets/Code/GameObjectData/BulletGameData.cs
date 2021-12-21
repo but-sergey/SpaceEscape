@@ -8,5 +8,6 @@ namespace SpaceEscape
         public Collider2D Collider;
         public Rigidbody2D RigidBody;
         public float Force;
+        public int BulletDamage;
     }
 }

@@ -44,7 +44,7 @@ namespace SpaceEscape
             bulletData.Bullet.gameObject.SetActive(false);
         }
 
-        public BulletGameData GetBullet(float force)
+        public BulletGameData GetBullet(float force, int damage)
         {
             BulletGameData bulletData = null;
 
@@ -72,6 +72,8 @@ namespace SpaceEscape
                 _player.position.x + _firePointOffset.x,
                 _player.position.y + _firePointOffset.y,
                 0.0f);
+            bulletData.BulletDamage = damage;
+            
 
             return bulletData;
         }

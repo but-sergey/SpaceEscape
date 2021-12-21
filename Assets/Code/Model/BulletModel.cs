@@ -10,6 +10,7 @@ namespace SpaceEscape
         public float Force { get; }
         public float BulletMass { get; }
         public Vector2 FirePointOffset { get; }
+        public int BulletDamage { get; }
 
         public BulletModel(BulletData bulletData)
         {
@@ -19,6 +20,7 @@ namespace SpaceEscape
             Speed = bulletData.Speed;
             Force = bulletData.Force;
             BulletMass = bulletData.BulletMass;
+            BulletDamage = bulletData.BulletDamage;
         }
     }
 }
