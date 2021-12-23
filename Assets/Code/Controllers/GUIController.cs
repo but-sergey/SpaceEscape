@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 namespace SpaceEscape
 {
@@ -16,6 +17,9 @@ namespace SpaceEscape
         private TextMeshProUGUI _newGameButtonText;
         private Button _continueButton;
         private TextMeshProUGUI _continueButtonText;
+        private Button _exitButton;
+        private TextMeshProUGUI _exitButtonText;
+
         private GameObject _osdRoot;
         private TextMeshProUGUI _scoreLabelText;
         private TextMeshProUGUI _scoreCounterText;
@@ -40,7 +44,10 @@ namespace SpaceEscape
             _newGameButtonText = GameObject.Instantiate<TextMeshProUGUI>(_mainMenuData.NewGameButtonText, _newGameButton.transform);
             _continueButton = GameObject.Instantiate<Button>(_mainMenuData.ContinueButton, _mainMenuBackgroundImage.transform);
             _continueButtonText = GameObject.Instantiate<TextMeshProUGUI>(_mainMenuData.ContinueButtonText, _continueButton.transform);
-            
+            _exitButton = GameObject.Instantiate<Button>(_mainMenuData.ExitButton, _mainMenuBackgroundImage.transform);
+            _exitButtonText = GameObject.Instantiate<TextMeshProUGUI>(_mainMenuData.ExitButtonText, _exitButton.transform);
+
+
             _osdRoot = GameObject.Instantiate(_mainMenuData.OSDRoot, _guiRootCanvas.transform);
             _scoreLabelText = GameObject.Instantiate<TextMeshProUGUI>(_mainMenuData.ScoreLabelText, _osdRoot.transform);
             _scoreCounterText = GameObject.Instantiate<TextMeshProUGUI>(_mainMenuData.ScoreCounterText, _osdRoot.transform);
@@ -53,6 +60,7 @@ namespace SpaceEscape
 
             _continueButton.onClick.AddListener(OnMenuExit);
             _newGameButton.onClick.AddListener(OnNewGame);
+            _exitButton.onClick.AddListener(OnGameExit);
 
         }
 
@@ -70,6 +78,7 @@ namespace SpaceEscape
             _scoreController.SetNewScore -= OnScoreChanged;
             _continueButton.onClick.RemoveAllListeners();
             _newGameButton.onClick.RemoveAllListeners();
+            _exitButton.onClick.RemoveAllListeners();
         }
 
         private void OnScoreChanged(int newScore)
@@ -85,11 +94,18 @@ namespace SpaceEscape
 
         private void OnNewGame()
         {
+            Time.timeScale = _defaultTimeScale;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        private void OnGameExit()
+        {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
             Application.Quit();
 #endif
+
         }
     }
 }

@@ -10,12 +10,14 @@ namespace SpaceEscape
         [Header("GUI root")]
         [SerializeField] private Canvas _guiRootCanvas;
         [SerializeField] private Image _mainMenuBackgroundImage;
-        [Header("Main menu root")]
+        [Header("Buttons")]
         [SerializeField] private GameObject _mainMenuRoot;
         [SerializeField] private Button _newGameButton;
         [SerializeField] private TextMeshProUGUI _newGameButtonText;
         [SerializeField] private Button _continueButton;
         [SerializeField] private TextMeshProUGUI _continueButtonText;
+        [SerializeField] private Button _exitButton;
+        [SerializeField] private TextMeshProUGUI _exitButtonText;
         [Header("OSD")]
         [SerializeField] private GameObject _osdRoot;
         [SerializeField] private TextMeshProUGUI _scoreLabelText;
@@ -48,6 +50,18 @@ namespace SpaceEscape
             set
             {
                 _continueButtonText = value;
+            }
+        }
+        public Button ExitButton => _exitButton;
+        public TextMeshProUGUI ExitButtonText
+        {
+            get
+            {
+                return _exitButtonText;
+            }
+            set
+            {
+                _exitButtonText = value;
             }
         }
 
