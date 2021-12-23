@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
+using System;
 
 namespace SpaceEscape
 {
-    public class ScoreController : IInitialization
+    public class ScoreController : IInitialization, ICleanup
     {
         private int _score;
         private EnemiesController _enemiesController;
+        public Action<int> SetNewScore;
 
 
 
@@ -24,10 +23,16 @@ namespace SpaceEscape
             _enemiesController.ScoreWasChanged += OnScoreChange;
         }
 
+        public void Cleanup()
+        {
+            _enemiesController.ScoreWasChanged -= OnScoreChange;
+        }
+
         private void OnScoreChange(int newScore)
         {
             _score += newScore;
-            Debug.Log(_score);
+            SetNewScore?.Invoke(_score);
+            //Debug.Log(_score);
         }
     }
 }

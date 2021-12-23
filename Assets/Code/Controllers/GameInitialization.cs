@@ -28,6 +28,8 @@ namespace SpaceEscape
 
             var scoreController = new ScoreController(enemiesController);
 
+            var guiController = new GUIController(data.MainMenuData, scoreController);
+
             controllers.Add(cameraController);
             controllers.Add(inputInitialization);
             controllers.Add(playerInitialization);
@@ -41,6 +43,7 @@ namespace SpaceEscape
             controllers.Add(new MoveController(inputInitialization.GetInput(), playerInitialization.GetPlayer(), playerModel, cameraController));
 
             controllers.Add(scoreController);
+            controllers.Add(guiController);
 
         }
     }

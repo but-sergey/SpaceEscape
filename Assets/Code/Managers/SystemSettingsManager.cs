@@ -1,4 +1,5 @@
-﻿namespace SpaceEscape
+﻿
+namespace SpaceEscape
 {
     public static class SystemSettingsManager
     {

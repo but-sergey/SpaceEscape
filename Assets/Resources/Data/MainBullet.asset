@@ -18,3 +18,4 @@ MonoBehaviour:
   _speed: {x: 0, y: 0.05}
   _bulletMass: 0.001
   _force: 0.002
+  _bulletDamage: 10

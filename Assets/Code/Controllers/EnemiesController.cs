@@ -25,7 +25,8 @@ namespace SpaceEscape
         // потом поменять на нормальные координаты спауна
         private float _tempXmin = -5.5f;
         private float _tempXmax = 5.5f;
-        private float _tempY = 7f;
+        private float _tempYmin = 7f;
+        private float _tempYmax = 12f;
 
         public EnemiesController(EnemyFactory enemyFactory, Data data, BulletPullController bulletPullController)
         {
@@ -58,7 +59,7 @@ namespace SpaceEscape
                     enemyProperties.EnemyScore
                     );
                 
-                Vector2 newpos = new Vector2(Random.Range(_tempXmin, _tempXmax), _tempY);
+                Vector2 newpos = new Vector2(Random.Range(_tempXmin, _tempXmax), Random.Range(_tempYmin, _tempYmax));
                 
                 enemy.EnemyPrefab.transform.position = newpos;
                 enemy.EnemyCurrentHealth = enemy.EnemyMaxHealth;
@@ -89,7 +90,7 @@ namespace SpaceEscape
         private void ReleaseToPool(Enemy enemyForRelease, List<Enemy> enemiesLevelPool, List<Enemy> enemiesOsScreenPool)
         {
             enemyForRelease.EnemyPrefab.SetActive(false);
-            enemyForRelease.EnemyPrefab.transform.position = new Vector2(Random.Range(_tempXmin, _tempXmax), _tempY);
+            enemyForRelease.EnemyPrefab.transform.position = new Vector2(Random.Range(_tempXmin, _tempXmax), _tempYmin);
             enemyForRelease.EnemyCurrentHealth = enemyForRelease.EnemyMaxHealth;
             enemiesLevelPool.Add(enemyForRelease);
             enemiesOsScreenPool.Remove(enemyForRelease);
