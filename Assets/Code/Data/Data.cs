@@ -10,12 +10,13 @@ namespace SpaceEscape
         [SerializeField] private string _levelDataPath;
         [SerializeField] private string _bulletDataPath;
         [SerializeField] private string _enemyDataPath;
-
+        [SerializeField] private string _mainMenuDataPath;
 
         private PlayerData _player;
         private LevelData _level;
         private BulletData _bullet;
         private EnemyData _enemies;
+        private MainMenuData _mainMenu;
 
         public PlayerData Player
         {
@@ -67,6 +68,18 @@ namespace SpaceEscape
                 return _enemies;
             }
             
+        }
+
+        public MainMenuData MainMenuData
+        {
+            get
+            {
+                if(_mainMenu == null)
+                {
+                    _mainMenu = Load<MainMenuData>(Path.Combine("Data", _mainMenuDataPath));
+                }
+                return _mainMenu;
+            }
         }
 
         private T Load<T>(string resourcesPath) where T : Object =>

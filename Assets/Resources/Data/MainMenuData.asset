@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1ca94822a6a543b50e03b05991405, type: 3}
+  m_Name: MainMenuData
+  m_EditorClassIdentifier: 
+  _guiRootCanvas: {fileID: 8441627544669089052, guid: 4ac96a921e6e6e046b5b8aa610bdb51f, type: 3}
+  _mainMenuBackgroundImage: {fileID: 3501233358374110236, guid: 20f4d3c3b10266d4194ab1415c34701b, type: 3}
+  _mainMenuRoot: {fileID: 189274801938267495, guid: 0188917048c6e014b992c0866bba41bd, type: 3}
+  _newGameButton: {fileID: 4828865412659415188, guid: 87aa43ba0650746439ac304b2acb7244, type: 3}
+  _newGameButtonText: {fileID: 8710206100566795122, guid: ba6bc6cb66f9fe2419fc8d48d804d9e2, type: 3}
+  _continueButton: {fileID: 8473127476671340162, guid: af7c4c5ff780b86459d98dcdcb235605, type: 3}
+  _continueButtonText: {fileID: 4085121930892113819, guid: 81dd012d60381354b91a5c67babb1e39, type: 3}
+  _exitButton: {fileID: 1393638931939304426, guid: b90bd45f584c42f4e82d0a089c5323d2, type: 3}
+  _exitButtonText: {fileID: 1862860878237834461, guid: 0b046d9fd2439554992821c536818e0b, type: 3}
+  _osdRoot: {fileID: 228277856554879725, guid: 432bff7485512604bbcb629421a8f737, type: 3}
+  _scoreLabelText: {fileID: 5231760945432543268, guid: 63f97ed8ef765d543a6ee29799a6ca1f, type: 3}
+  _scoreCounterText: {fileID: 2970190692618463961, guid: 1e4dcb0be27745142af1c5272af7183f, type: 3}
+  _playerHealthLabelText: {fileID: 1607398880211791290, guid: 87975118e57cd4e49aaf3b702b742afb, type: 3}
+  _playerHealthCounterText: {fileID: 7505205053367203930, guid: e79b5f6139d6a034ebdd2214286148a6, type: 3}

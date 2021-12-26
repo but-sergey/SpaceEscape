@@ -16,3 +16,4 @@ MonoBehaviour:
   _levelDataPath: Level1
   _bulletDataPath: MainBullet
   _enemyDataPath: EnemyData
+  _mainMenuDataPath: MainMenuData
