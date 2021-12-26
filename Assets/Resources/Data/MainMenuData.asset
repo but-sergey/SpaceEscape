@@ -19,6 +19,8 @@ MonoBehaviour:
   _newGameButtonText: {fileID: 8710206100566795122, guid: ba6bc6cb66f9fe2419fc8d48d804d9e2, type: 3}
   _continueButton: {fileID: 8473127476671340162, guid: af7c4c5ff780b86459d98dcdcb235605, type: 3}
   _continueButtonText: {fileID: 4085121930892113819, guid: 81dd012d60381354b91a5c67babb1e39, type: 3}
+  _exitButton: {fileID: 1393638931939304426, guid: b90bd45f584c42f4e82d0a089c5323d2, type: 3}
+  _exitButtonText: {fileID: 1862860878237834461, guid: 0b046d9fd2439554992821c536818e0b, type: 3}
   _osdRoot: {fileID: 228277856554879725, guid: 432bff7485512604bbcb629421a8f737, type: 3}
   _scoreLabelText: {fileID: 5231760945432543268, guid: 63f97ed8ef765d543a6ee29799a6ca1f, type: 3}
   _scoreCounterText: {fileID: 2970190692618463961, guid: 1e4dcb0be27745142af1c5272af7183f, type: 3}
