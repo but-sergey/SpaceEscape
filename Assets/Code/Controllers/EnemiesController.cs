@@ -1,45 +1,51 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace SpaceEscape
 {
-    public class EnemiesController : IInitialization, IExecute
+    public class EnemiesController : IInitialization, IExecute, ICleanup
     {
         private EnemyFactory _enemyFactory;
         private LevelData _levelData;
         private EnemyData _enemyData;
         private PlayerData _playerData;
         private List<Enemy> _enemiesPoolList;
-        //private Dictionary<int, Enemy> _enemiesPool;
-        private List<Enemy> _enemiesOnMap;
 
-        private List<float> _spawnXcoords;
+        private BulletPullController _bulletPullController;
+        private List<BulletGameData> _bulletGameData;
 
+        internal List<Enemy> EnemiesOnMap;
+
+        public Action<int> ScoreWasChanged;
+        
         private int _enemiesToMax;
 
         // потом поменять на нормальные координаты спауна
         private float _tempXmin = -5.5f;
         private float _tempXmax = 5.5f;
-        private float _tempY = 7f;
+        private float _tempYmin = 7f;
+        private float _tempYmax = 12f;
 
-        //public EnemiesController(EnemyFactory enemyFactory, LevelData levelData, EnemyData enemyData)
-        public EnemiesController(EnemyFactory enemyFactory, Data data)
+        public EnemiesController(EnemyFactory enemyFactory, Data data, BulletPullController bulletPullController)
         {
             _enemyFactory = enemyFactory;
             _levelData = data.Level;
             _enemyData = data.Enemies;
             _playerData = data.Player;
+            _bulletPullController = bulletPullController;
+            
         }
         public void Initialization()
         {
             // костыль? 
 
             Camera.main.GetComponentInChildren<ColliderObserver>().CorrespondCollidedId += OnAsteroidScreenHiding;
+            
 
             _enemiesPoolList = new List<Enemy>();
-            //_enemiesPool = new Dictionary<int, Enemy>();
-            _enemiesOnMap = new List<Enemy>();
+            EnemiesOnMap = new List<Enemy>();
             _enemiesToMax = 0;
             for (int i = 0; i < _levelData.AsteroidCount; i++)
             {
@@ -53,69 +59,108 @@ namespace SpaceEscape
                     enemyProperties.EnemyScore
                     );
                 
-                Vector2 newpos = new Vector2(Random.Range(_tempXmin, _tempXmax), _tempY);
+                Vector2 newpos = new Vector2(Random.Range(_tempXmin, _tempXmax), Random.Range(_tempYmin, _tempYmax));
                 
                 enemy.EnemyPrefab.transform.position = newpos;
-                
+                enemy.EnemyCurrentHealth = enemy.EnemyMaxHealth;
                 _enemiesPoolList.Add(enemy);
+                enemy.EnemyPrefab.GetComponent<EnemyInteraction>().WhoCollideMe += OnBulletCollide;
                 enemy.EnemyPrefab.SetActive(false);
             }
 
             
             for(int j = 0; j < _levelData.AsteroidDensity; j++)
             {
-                GetFromPool(_enemiesPoolList, _enemiesOnMap, Random.Range(0, _enemiesPoolList.Count));
+                GetFromPool(_enemiesPoolList, EnemiesOnMap, Random.Range(0, _enemiesPoolList.Count));
             }
 
-
+            _bulletGameData = _bulletPullController.GetBulletList;
         }
         
         private void GetFromPool(List<Enemy> enemiesLevelPool, List<Enemy> enemiesOnScreenPool, int enemiesPoolIndex)
         {
             Enemy enemyToAdd = enemiesLevelPool[enemiesPoolIndex];
             enemyToAdd.EnemyPrefab.SetActive(true);
-
+            enemyToAdd.EnemyCurrentHealth = enemyToAdd.EnemyMaxHealth;
             enemiesOnScreenPool.Add(enemyToAdd);
             enemiesLevelPool.Remove(enemyToAdd);
             _enemiesToMax++;
-            //Debug.Log($"Asteroids: {_enemiesToMax} from {_levelData.AsteroidCount}");
         }
 
         private void ReleaseToPool(Enemy enemyForRelease, List<Enemy> enemiesLevelPool, List<Enemy> enemiesOsScreenPool)
         {
             enemyForRelease.EnemyPrefab.SetActive(false);
-            enemyForRelease.EnemyPrefab.transform.position = new Vector2(Random.Range(_tempXmin, _tempXmax), _tempY);
+            enemyForRelease.EnemyPrefab.transform.position = new Vector2(Random.Range(_tempXmin, _tempXmax), _tempYmin);
+            enemyForRelease.EnemyCurrentHealth = enemyForRelease.EnemyMaxHealth;
             enemiesLevelPool.Add(enemyForRelease);
             enemiesOsScreenPool.Remove(enemyForRelease);
         }
 
         public void Execute(float deltatime)
         {
-            if (_enemiesToMax < _levelData.AsteroidCount && _enemiesOnMap.Count < _levelData.AsteroidDensity)
+            if (_enemiesToMax < _levelData.AsteroidCount && EnemiesOnMap.Count < _levelData.AsteroidDensity)
             {
-                GetFromPool(_enemiesPoolList, _enemiesOnMap, Random.Range(0, _enemiesPoolList.Count));
+                GetFromPool(_enemiesPoolList, EnemiesOnMap, Random.Range(0, _enemiesPoolList.Count));
                 
             }
 
-            foreach(Enemy currenEnemy in _enemiesOnMap)
+            for(int k = 0; k <  EnemiesOnMap.Count; k++)
             {
-                currenEnemy.EnemyPrefab.transform.position -= new Vector3(0, currenEnemy.EnemySpeed, currenEnemy.EnemyPrefab.transform.position.z) * deltatime;
-              
+                EnemiesOnMap[k].EnemyPrefab.transform.position -= new Vector3(0, EnemiesOnMap[k].EnemySpeed, EnemiesOnMap[k].EnemyPrefab.transform.position.z) * deltatime;
+                if(EnemiesOnMap[k].EnemyCurrentHealth <= 0)
+                {
+                    ScoreWasChanged?.Invoke(EnemiesOnMap[k].EnemyScore);
+                    ReleaseToPool(EnemiesOnMap[k], _enemiesPoolList, EnemiesOnMap);
+                }
+            }
+
+
+        }
+
+        public void Cleanup()
+        {
+            /*
+            if (Camera.main)
+            {
+                Camera.main.GetComponentInChildren<ColliderObserver>().CorrespondCollidedId -= OnAsteroidScreenHiding;
+            }
+            
+            for (int i = 0; i < _enemiesPoolList.Count; i++)
+            {
+                _enemiesPoolList[i].EnemyPrefab.GetComponent<EnemyInteraction>().WhoCollideMe -= OnBulletCollide;
+            }
+            */
+        }
+
+        private void OnBulletCollide(int callerInstanceId, int bulletInstanceId)
+        {
+            int bulletDamage = 0;
+            for(int k = 0; k < _bulletGameData.Count; k++)
+            {
+                if(_bulletGameData[k].Collider.gameObject.GetInstanceID() == bulletInstanceId)
+                {
+                    _bulletGameData[k].Collider.gameObject.SetActive(false);
+                    bulletDamage = _bulletGameData[k].BulletDamage;
+                }
+            }
+
+            for (int j = 0; j < EnemiesOnMap.Count; j++)
+            {
+                if(callerInstanceId == EnemiesOnMap[j].EnemyPrefab.GetInstanceID())
+                {
+                    EnemiesOnMap[j].EnemyCurrentHealth -= bulletDamage;
+                    //Debug.Log($"{EnemiesOnMap[j].EnemyCurrentHealth}, damage: {bulletDamage}");
+                }
             }
         }
 
         private void OnAsteroidScreenHiding(int instanceId)
         {
-            for(int i = 0; i < _enemiesOnMap.Count; i++)
+            for(int i = 0; i < EnemiesOnMap.Count; i++)
             {
-                if (_enemiesOnMap[i].EnemyPrefab.GetInstanceID() == instanceId)
+                if (EnemiesOnMap[i].EnemyPrefab.GetInstanceID() == instanceId)
                 {
-                    /*
-                    enemyToHide.EnemyPrefab.SetActive(false);
-                    enemyToHide.EnemyPrefab.transform.position = new Vector2(Random.Range(_tempXmin, _tempXmax), _tempY);
-                    _enemiesPoolList.Add(enemyToHide);
-                    */
-                    ReleaseToPool(_enemiesOnMap[i], _enemiesPoolList, _enemiesOnMap);
+                    ReleaseToPool(EnemiesOnMap[i], _enemiesPoolList, EnemiesOnMap);
                 }
             }
             
