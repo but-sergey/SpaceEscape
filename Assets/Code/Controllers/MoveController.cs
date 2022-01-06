@@ -14,7 +14,7 @@ namespace SpaceEscape
         private IUserInputProxy _horizontalInputProxy;
         private IUserInputProxy _verticalInputProxy;
 
-        public MoveController((IUserInputProxy inputHorizontal, IUserInputProxy inputVertical) input,
+        public MoveController((IUserInputProxy inputHorizontal, IUserInputProxy inputVertical, IUserKeyInputProxy inputFire) input,
             Transform unit, IPlayerModel unitData, CameraController cameraController)
         {
             _unit = unit;
