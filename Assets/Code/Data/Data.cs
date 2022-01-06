@@ -24,7 +24,7 @@ namespace SpaceEscape
             {
                 if(_player == null)
                 {
-                    _player = Load<PlayerData>(Path.Combine("Data", _playerDataPath));
+                    _player = Load<PlayerData>(Path.Combine(PathManager.Root, PathManager.Players, _playerDataPath));
                 }
 
                 return _player;
@@ -37,7 +37,7 @@ namespace SpaceEscape
             {
                 if(_level == null)
                 {
-                    _level = Load<LevelData>(Path.Combine("Data", _levelDataPath));
+                    _level = Load<LevelData>(Path.Combine(PathManager.Root, PathManager.Levels, _levelDataPath));
                 }
 
                 return _level;
@@ -50,7 +50,7 @@ namespace SpaceEscape
             {
                 if (_bullet == null)
                 {
-                    _bullet = Load<BulletData>(Path.Combine("Data", _bulletDataPath));
+                    _bullet = Load<BulletData>(Path.Combine(PathManager.Root, PathManager.Ammunitions, _bulletDataPath));
                 }
 
                 return _bullet;
@@ -63,7 +63,7 @@ namespace SpaceEscape
             {
                 if (_enemies == null)
                 {
-                    _enemies = Load<EnemyData>(Path.Combine("Data", _enemyDataPath));
+                    _enemies = Load<EnemyData>(Path.Combine(PathManager.Root, PathManager.Enemies, _enemyDataPath));
                 }
                 return _enemies;
             }
@@ -76,7 +76,7 @@ namespace SpaceEscape
             {
                 if(_mainMenu == null)
                 {
-                    _mainMenu = Load<MainMenuData>(Path.Combine("Data", _mainMenuDataPath));
+                    _mainMenu = Load<MainMenuData>(Path.Combine(PathManager.Root, PathManager.GUI, _mainMenuDataPath));
                 }
                 return _mainMenu;
             }
