@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace SpaceEscape
 {
-    public class GUIController : IInitialization, IExecute, ICleanup
+    public sealed class GUIController : IInitialization, IExecute, ICleanup
     {
         private ScoreController _scoreController;
         private MainMenuData _mainMenuData;

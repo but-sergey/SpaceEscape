@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace SpaceEscape
 {
-    public class EnemiesController : IInitialization, IExecute, ICleanup
+    public sealed class EnemiesController : IInitialization, IExecute, ICleanup
     {
         private EnemyFactory _enemyFactory;
         private LevelData _levelData;
