@@ -14,15 +14,14 @@ namespace SpaceEscape
         private IUserInputProxy _horizontalInputProxy;
         private IUserInputProxy _verticalInputProxy;
 
-        public MoveController((IUserInputProxy inputHorizontal, IUserInputProxy inputVertical, IUserKeyInputProxy inputFire) input,
-            Transform unit, IPlayerModel unitData, CameraController cameraController)
+        public MoveController(InputData input, Transform unit, IPlayerModel unitData, CameraController cameraController)
         {
             _unit = unit;
             _unitCollider = _unit.gameObject.GetComponent<Collider2D>();
             _unitData = unitData;
             _cameraController = cameraController;
-            _horizontalInputProxy = input.inputHorizontal;
-            _verticalInputProxy = input.inputVertical;
+            _horizontalInputProxy = input.InputHorizontal;
+            _verticalInputProxy = input.InputVertical;
             _horizontalInputProxy.AxisOnChange += HorizontalOnAxisOnChange;
             _verticalInputProxy.AxisOnChange += VerticalOnAxisOnChange;
         }

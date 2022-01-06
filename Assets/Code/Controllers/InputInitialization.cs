@@ -19,9 +19,9 @@ namespace SpaceEscape
         { 
         }
 
-        public (IUserInputProxy inputHorizontal, IUserInputProxy inputVertical, IUserKeyInputProxy inputFire) GetInput()
+        public InputData GetInput()
         {
-            (IUserInputProxy inputHorizontal, IUserInputProxy inputVertical, IUserKeyInputProxy inputFire) result = (_pcInputHorizontal, _pcInputVertical, _pcInputFire);
+            var result = new InputData(_pcInputHorizontal, _pcInputVertical, _pcInputFire);
             return result;
         }
     }

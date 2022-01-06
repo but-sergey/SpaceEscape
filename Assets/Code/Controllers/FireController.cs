@@ -11,11 +11,10 @@ namespace SpaceEscape
         private bool _fire;
 
 
-        public FireController((IUserInputProxy inputHorizontal, IUserInputProxy inputVertical, IUserKeyInputProxy inputFire) input,
-            BulletPullController bulletPullController, BulletModel bulletModel)
+        public FireController(InputData input, BulletPullController bulletPullController, BulletModel bulletModel)
         {
             _bulletPullController = bulletPullController;
-            _fireInputProxy = input.inputFire;
+            _fireInputProxy = input.InputFire;
             _bulletModel = bulletModel;
 
             _fireInputProxy.KeyOnChange += FireKeyOnChange;

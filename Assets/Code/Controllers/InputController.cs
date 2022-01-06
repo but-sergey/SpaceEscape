@@ -8,11 +8,11 @@ namespace SpaceEscape
         private readonly IUserInputProxy _vertical;
         private readonly IUserKeyInputProxy _fire;
 
-        public InputController((IUserInputProxy inputHorizontal, IUserInputProxy inputVertical, IUserKeyInputProxy inputFire) input)
+        public InputController(InputData input)
         {
-            _horizontal = input.inputHorizontal;
-            _vertical = input.inputVertical;
-            _fire = input.inputFire;
+            _horizontal = input.InputHorizontal;
+            _vertical = input.InputVertical;
+            _fire = input.InputFire;
         }
 
         public void Execute(float deltaTime)
