@@ -13,7 +13,7 @@ namespace SpaceEscape
 
         public Transform CreatePlayer()
         {
-            GameObject player = GameObject.Instantiate(_playerData.PlayerPrefab);
+            GameObject player = Object.Instantiate(_playerData.PlayerPrefab);
 
             return player.transform;
         }

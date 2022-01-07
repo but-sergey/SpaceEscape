@@ -6,25 +6,18 @@ namespace SpaceEscape
     {
         private readonly IUserInputProxy _horizontal;
         private readonly IUserInputProxy _vertical;
-        private readonly IFireController _fireController;
-        private readonly Transform _player;
+        private readonly IUserKeyInputProxy _fire;
 
-        public InputController(Transform player, (IUserInputProxy inputHorizontal, IUserInputProxy inputVertical) input, IFireController fireController)
+        public InputController(InputData input)
         {
-            _player = player;
-            _fireController = fireController;
-
-            _horizontal = input.inputHorizontal;
-            _vertical = input.inputVertical;
+            _horizontal = input.InputHorizontal;
+            _vertical = input.InputVertical;
+            _fire = input.InputFire;
         }
 
         public void Execute(float deltaTime)
         {
-            if (Input.GetKeyDown(KeyManager.FIRE))
-            {
-                _fireController.Fire();
-            }
-
+            _fire.GetKey();
             _horizontal.GetAxis();
             _vertical.GetAxis();
         }

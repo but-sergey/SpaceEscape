@@ -3,7 +3,7 @@ using System;
 
 namespace SpaceEscape
 {
-    public class ScoreController : IInitialization, ICleanup
+    public sealed class ScoreController : IInitialization, ICleanup
     {
         private int _score;
         private EnemiesController _enemiesController;

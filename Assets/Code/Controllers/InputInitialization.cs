@@ -6,20 +6,22 @@ namespace SpaceEscape
     {
         private IUserInputProxy _pcInputHorizontal;
         private IUserInputProxy _pcInputVertical;
+        private IUserKeyInputProxy _pcInputFire;
 
         public InputInitialization()
         {
             _pcInputHorizontal = new PCInputHorizontal();
             _pcInputVertical = new PCInputVertical();
+            _pcInputFire = new PCInputFire();
         }
 
         public void Initialization()
         { 
         }
 
-        public (IUserInputProxy inputHorizontal, IUserInputProxy inputVertical) GetInput()
+        public InputData GetInput()
         {
-            (IUserInputProxy inputHorizontal, IUserInputProxy inputVertical) result = (_pcInputHorizontal, _pcInputVertical);
+            var result = new InputData(_pcInputHorizontal, _pcInputVertical, _pcInputFire);
             return result;
         }
     }
