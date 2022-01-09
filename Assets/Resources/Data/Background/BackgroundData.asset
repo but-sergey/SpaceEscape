@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e53390c652d96844a7cfaf86353b841, type: 3}
+  m_Name: BackgroundData
+  m_EditorClassIdentifier: 
+  _backgroundStars:
+  - {fileID: 3681053434087375940, guid: ede7ff23e5958bc469e4eea836fbbd5b, type: 3}
+  - {fileID: 1181211027820501090, guid: 7f3ae67225be48e4a8eeb57d8610d7ab, type: 3}
+  - {fileID: 1196178945278444492, guid: a5781a4388e35e84f849161f2f8d85a0, type: 3}
+  - {fileID: 9062258693617800305, guid: 0bb01314fef66304782b64a30f929ee0, type: 3}
+  _backgroundStarsDensity: 45
+  _backgroundPlanets:
+  - {fileID: 1327782819795734432, guid: ebbf5b5231b9b4f4b9478546a1b8bdd9, type: 3}
+  - {fileID: 6053629027609751175, guid: 6964b25bcee4a784eb83b88cdf5d2a84, type: 3}
+  - {fileID: 5931594880792505469, guid: 4f0d6aeef337b73418b5ae934bba6cb7, type: 3}
+  _backgroundPlanetDensity: 3
+  _backgroundPlanetsDelayMin: 10
+  _backgroundPlanetsDelayMax: 20
+  _backgroundComets:
+  - {fileID: 58452001624490895, guid: d393c52fe56abee47b09b5cc19ee14e0, type: 3}
+  _backgroundCometsDensity: 1
+  _backgroundCometsDelayMin: 10
+  _backgroundCometsDelayMax: 20

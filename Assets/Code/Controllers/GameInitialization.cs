@@ -39,7 +39,7 @@ namespace SpaceEscape
 
             controllers.Add(scoreController);
             controllers.Add(guiController);
-
+            controllers.Add(new BackgroundController(data.BackgroundData, new BackgroundFactory()));
         }
     }
 }

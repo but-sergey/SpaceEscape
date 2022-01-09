@@ -22,8 +22,6 @@ namespace SpaceEscape
                      bulletData.Bullet.gameObject.SetActive(false);
                     _bulletPullController.BulletOff(bulletData);
                 }
-
-                // todo: проверка на столкновение с астероидом
             }
 
         }

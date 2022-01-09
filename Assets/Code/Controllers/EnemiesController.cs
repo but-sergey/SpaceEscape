@@ -16,6 +16,9 @@ namespace SpaceEscape
         private BulletPullController _bulletPullController;
         private List<BulletGameData> _bulletGameData;
 
+        private ColliderObserver _colliderObserber;
+
+
         internal List<Enemy> EnemiesOnMap;
 
         public Action<int> ScoreWasChanged;
@@ -40,8 +43,8 @@ namespace SpaceEscape
         public void Initialization()
         {
             // костыль? 
-
-            Camera.main.GetComponentInChildren<ColliderObserver>().CorrespondCollidedId += OnAsteroidScreenHiding;
+            _colliderObserber = Camera.main.GetComponentInChildren<ColliderObserver>();
+            _colliderObserber.CorrespondCollidedId += OnAsteroidScreenHiding;
             
 
             _enemiesPoolList = new List<Enemy>();
@@ -119,6 +122,7 @@ namespace SpaceEscape
 
         public void Cleanup()
         {
+            _colliderObserber.CorrespondCollidedId -= OnAsteroidScreenHiding;
             /*
             if (Camera.main)
             {

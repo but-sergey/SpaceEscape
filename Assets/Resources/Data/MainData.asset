@@ -17,3 +17,4 @@ MonoBehaviour:
   _bulletDataPath: MainBullet
   _enemyDataPath: EnemyData
   _mainMenuDataPath: MainMenuData
+  _backgroundDataPath: BackgroundData
