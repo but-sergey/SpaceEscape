@@ -10,7 +10,7 @@
             var moveSystem   = new MoveSystem(controllers, inputSystem, playerSystem, cameraSystem);
             var bulletSystem = new BulletSystem(controllers, data, playerSystem, cameraSystem);
             var fireSystem   = new FireSystem(controllers, inputSystem, bulletSystem);
-            var enemySystem  = new EnemySystem(controllers, data, bulletSystem);
+            var enemySystem  = new EnemySystem(controllers, data, bulletSystem, playerSystem);
             var scoreSystem  = new ScoreSystem(controllers, enemySystem);
             var guiSystem    = new GUISystem(controllers, data, scoreSystem);
         }

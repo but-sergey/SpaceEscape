@@ -10,7 +10,7 @@ namespace SpaceEscape
         private EnemyFactory _enemyFactory;
         private LevelData _levelData;
         private EnemyData _enemyData;
-        private PlayerData _playerData;
+        private Transform _player;
         private List<Enemy> _enemiesPoolList;
 
         private BulletPullController _bulletPullController;
@@ -23,17 +23,18 @@ namespace SpaceEscape
         private int _enemiesToMax;
 
         // потом поменять на нормальные координаты спауна
+        // координаты относительно позиции игрока
         private float _tempXmin = -5.5f;
         private float _tempXmax = 5.5f;
         private float _tempYmin = 7f;
         private float _tempYmax = 12f;
 
-        public EnemiesController(EnemyFactory enemyFactory, Data data, BulletPullController bulletPullController)
+        public EnemiesController(EnemyFactory enemyFactory, Data data, BulletPullController bulletPullController, Transform player)
         {
             _enemyFactory = enemyFactory;
             _levelData = data.Level;
             _enemyData = data.Enemies;
-            _playerData = data.Player;
+            _player = player;
             _bulletPullController = bulletPullController;
             
         }
@@ -59,16 +60,12 @@ namespace SpaceEscape
                     enemyProperties.EnemyScore
                     );
                 
-                Vector2 newpos = new Vector2(Random.Range(_tempXmin, _tempXmax), Random.Range(_tempYmin, _tempYmax));
-                
-                enemy.EnemyPrefab.transform.position = newpos;
                 enemy.EnemyCurrentHealth = enemy.EnemyMaxHealth;
                 _enemiesPoolList.Add(enemy);
                 enemy.EnemyPrefab.GetComponent<EnemyInteraction>().WhoCollideMe += OnBulletCollide;
                 enemy.EnemyPrefab.SetActive(false);
             }
 
-            
             for(int j = 0; j < _levelData.AsteroidDensity; j++)
             {
                 GetFromPool(_enemiesPoolList, EnemiesOnMap, Random.Range(0, _enemiesPoolList.Count));
@@ -79,9 +76,16 @@ namespace SpaceEscape
         
         private void GetFromPool(List<Enemy> enemiesLevelPool, List<Enemy> enemiesOnScreenPool, int enemiesPoolIndex)
         {
+            Vector2 newpos = new Vector2(
+                Random.Range(_player.position.x + _tempXmin, _player.position.x + _tempXmax),
+                Random.Range(_player.position.y + _tempYmin, _player.position.y + _tempYmax));
+
             Enemy enemyToAdd = enemiesLevelPool[enemiesPoolIndex];
             enemyToAdd.EnemyPrefab.SetActive(true);
             enemyToAdd.EnemyCurrentHealth = enemyToAdd.EnemyMaxHealth;
+            enemyToAdd.EnemyPrefab.transform.position = newpos;
+
+
             enemiesOnScreenPool.Add(enemyToAdd);
             enemiesLevelPool.Remove(enemyToAdd);
             _enemiesToMax++;
