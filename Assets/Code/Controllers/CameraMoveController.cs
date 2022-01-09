@@ -33,8 +33,6 @@ namespace SpaceEscape
         {
             Vector3 currentOffset = _camera.transform.position - _initialOffset - _player.transform.position;
 
-            Debug.Log(currentOffset);
-
             if(!_bounds.Contains(currentOffset))
             {
                 _camera.transform.position = Vector3.SmoothDamp(_camera.transform.position, _player.transform.position + _initialOffset, ref _velocity, _smoothTime, _maxSpeed, deltaTime);
