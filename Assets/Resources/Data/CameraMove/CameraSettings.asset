@@ -9,12 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bb77809543c77044ae492350df5eeed, type: 3}
-  m_Name: MainData
+  m_Script: {fileID: 11500000, guid: f77a9c556153a8d41af861935508424c, type: 3}
+  m_Name: CameraSettings
   m_EditorClassIdentifier: 
-  _playerDataPath: Player
-  _levelDataPath: Level1
-  _bulletDataPath: MainBullet
-  _enemyDataPath: EnemyData
-  _mainMenuDataPath: MainMenuData
-  _cameraMoveDataPath: CameraSettings
+  _smoothTime: 0.1
+  _maxSpeed: 5
+  _xMin: -5
+  _xMax: 5
+  _yMin: -5
+  _yMax: 1
+  _test:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0

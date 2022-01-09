@@ -9,33 +9,30 @@ namespace SpaceEscape
         private Vector3 _initialOffset;
         private Vector3 _velocity = Vector3.zero;
         private Rect _bounds;
+        private CameraMoveData _cameraSettings;
         private float _smoothTime;
         private float _maxSpeed;
 
-        public CameraMoveController(Camera camera, Transform player)
+        public CameraMoveController(Camera camera, Transform player, CameraMoveData _settings)
         {
             _camera = camera;
             _player = player;
+            _cameraSettings = _settings;
         }
 
         public void Initialization()
         {
             _initialOffset = _camera.transform.position - _player.position;
 
-            // !!!!!! проверка алгоритма, после отладки цифры вынести в настройки
-            /**/ _smoothTime = 0.1f;
-            /**/ _maxSpeed = 5.0f;
-            /**/ float xMin = -5.0f;
-            /**/ float xMax = +5.0f;
-            /**/ float yMin = -5.0f;
-            /**/ float yMax = +1.0f;
-
-            _bounds = new Rect(xMin, yMin, xMax - xMin, yMax - yMin);
+            _smoothTime = _cameraSettings.SmoothTime;
+            _maxSpeed = _cameraSettings.MaxSpeed;
+            _bounds = _cameraSettings.PlayerBounds;
         }
 
         public void LateExecute(float deltaTime)
         {
             Vector3 currentOffset = _camera.transform.position - _initialOffset - _player.transform.position;
+
             Debug.Log(currentOffset);
 
             if(!_bounds.Contains(currentOffset))

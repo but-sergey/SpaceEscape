@@ -9,5 +9,6 @@
         public const string Enemies = "Enemies";
         public const string Ammunitions = "Ammunitions";
         public const string GUI = "GUI";
+        public const string CameraMove = "CameraMove";
     }
 }
