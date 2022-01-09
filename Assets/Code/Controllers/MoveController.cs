@@ -42,11 +42,6 @@ namespace SpaceEscape
 
             _move.Set(_horizontal * speed, _vertical * speed, 0.0f);
             _unit.localPosition += _move;
-
-            if(!_cameraController.CheckObjectInsideFrustum(_unitCollider))
-            {
-                _unit.localPosition -= 5 *_move;  // не нравится мне эта фигня....
-            }
         }
 
         public void Cleanup()

@@ -36,6 +36,7 @@ namespace SpaceEscape
             controllers.Add(new InputController(inputInitialization.GetInput()));
             controllers.Add(new MoveController(inputInitialization.GetInput(), playerInitialization.GetPlayer(), playerModel, cameraController));
             controllers.Add(new FireController(inputInitialization.GetInput(), bulletPullController, bulletModel));
+            controllers.Add(new CameraMoveController(mainCamera, playerInitialization.GetPlayer()));
 
             controllers.Add(scoreController);
             controllers.Add(guiController);
