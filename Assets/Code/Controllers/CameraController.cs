@@ -14,11 +14,11 @@ namespace SpaceEscape
 
         public void Initialization()
         {
-            _planes = GeometryUtility.CalculateFrustumPlanes(_camera);
         }
 
         public bool CheckObjectInsideFrustum(Collider2D collider)
         {
+            _planes = GeometryUtility.CalculateFrustumPlanes(_camera);
             return GeometryUtility.TestPlanesAABB(_planes, collider.bounds);
         }
     }
