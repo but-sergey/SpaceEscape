@@ -11,12 +11,14 @@ namespace SpaceEscape
         [SerializeField] private string _bulletDataPath;
         [SerializeField] private string _enemyDataPath;
         [SerializeField] private string _mainMenuDataPath;
+        [SerializeField] private string _cameraMoveDataPath;
 
         private PlayerData _player;
         private LevelData _level;
         private BulletData _bullet;
         private EnemyData _enemies;
         private MainMenuData _mainMenu;
+        private CameraMoveData _cameraMove;
 
         public PlayerData Player
         {
@@ -74,11 +76,23 @@ namespace SpaceEscape
         {
             get
             {
-                if(_mainMenu == null)
+                if (_mainMenu == null)
                 {
                     _mainMenu = Load<MainMenuData>(Path.Combine(PathManager.Root, PathManager.GUI, _mainMenuDataPath));
                 }
                 return _mainMenu;
+            }
+        }
+
+        public CameraMoveData CameraMoveData
+        {
+            get
+            {
+                if (_cameraMove == null)
+                {
+                    _cameraMove = Load<CameraMoveData>(Path.Combine(PathManager.Root, PathManager.CameraMove, _cameraMoveDataPath));
+                }
+                return _cameraMove;
             }
         }
 
