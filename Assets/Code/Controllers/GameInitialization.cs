@@ -13,8 +13,7 @@
             var enemySystem  = new EnemySystem(controllers, data, bulletSystem, playerSystem);
             var scoreSystem  = new ScoreSystem(controllers, enemySystem);
             var guiSystem    = new GUISystem(controllers, data, scoreSystem);
-
-            controllers.Add(new BackgroundController(data.BackgroundData, new BackgroundFactory()));
+            var backgroundSystem = new BackgroundSystem(controllers, data);
         }
     }
 }
