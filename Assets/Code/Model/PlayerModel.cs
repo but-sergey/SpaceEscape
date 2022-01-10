@@ -9,12 +9,12 @@ namespace SpaceEscape
         public Vector2 Position { get; }
         public string Name { get; }
 
-        public PlayerModel(GameObject playerPrefab, float speed, Vector3 position, string name)
+        public PlayerModel(PlayerData playerData)
         {
-            PlayerPrefab = playerPrefab;
-            Speed = speed;
-            Position = position;
-            Name = name;
+            PlayerPrefab = playerData.PlayerPrefab;
+            Speed = playerData.Speed;
+            Position = playerData.Position;
+            Name = playerData.Name;
         }
     }
 }

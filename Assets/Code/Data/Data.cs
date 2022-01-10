@@ -12,6 +12,7 @@ namespace SpaceEscape
         [SerializeField] private string _enemyDataPath;
         [SerializeField] private string _mainMenuDataPath;
         [SerializeField] private string _backgroundDataPath;
+        [SerializeField] private string _cameraMoveDataPath;
 
         private PlayerData _player;
         private LevelData _level;
@@ -19,6 +20,7 @@ namespace SpaceEscape
         private EnemyData _enemies;
         private MainMenuData _mainMenu;
         private BackgroundData _backgroundData;
+        private CameraMoveData _cameraMove;
 
         public PlayerData Player
         {
@@ -67,6 +69,7 @@ namespace SpaceEscape
                 {
                     _enemies = Load<EnemyData>(Path.Combine(PathManager.Root, PathManager.Enemies, _enemyDataPath));
                 }
+
                 return _enemies;
             }
             
@@ -76,10 +79,11 @@ namespace SpaceEscape
         {
             get
             {
-                if(_mainMenu == null)
+                if (_mainMenu == null)
                 {
                     _mainMenu = Load<MainMenuData>(Path.Combine(PathManager.Root, PathManager.GUI, _mainMenuDataPath));
                 }
+
                 return _mainMenu;
             }
         }
@@ -94,6 +98,19 @@ namespace SpaceEscape
                 }
 
                 return _backgroundData;
+            }
+        }
+
+        public CameraMoveData CameraMoveData
+        {
+            get
+            {
+                if (_cameraMove == null)
+                {
+                    _cameraMove = Load<CameraMoveData>(Path.Combine(PathManager.Root, PathManager.CameraMove, _cameraMoveDataPath));
+                }
+                
+                return _cameraMove;
             }
         }
 

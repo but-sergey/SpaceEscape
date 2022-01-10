@@ -18,3 +18,4 @@ MonoBehaviour:
   _enemyDataPath: EnemyData
   _mainMenuDataPath: MainMenuData
   _backgroundDataPath: BackgroundData
+  _cameraMoveDataPath: CameraSettings
