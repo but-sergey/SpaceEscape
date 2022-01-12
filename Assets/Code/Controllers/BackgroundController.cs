@@ -47,7 +47,7 @@ namespace SpaceEscape
                 BackgroundObject bgObject = _backgroundFactory.CreateBackgroundObject(_backgroundData.BackgroundStars[Random.Range(0, _backgroundData.BackgroundStars.Count)], -3);
                 bgObject.BackgroundObjectPrefafab.SetActive(false);
                 _backgroundObjectStarsPool.Add(bgObject);
-                Vector2 spawnCoords = new Vector2(Random.Range(_spawnCoordsXmin, _spawnCoordsXmax), Random.Range(_initSpawnCoordsYmin, _respawnCoordsYmax));
+                Vector2 spawnCoords = new Vector2(Random.Range(_spawnCoordsXmin, _spawnCoordsXmax), Random.Range(_initSpawnCoordsYmin, _initSpawnCoordsYmax));
                 GetFromPool(bgObject, _backgroundObjectStarsPool, _backgroundObjectsStarsOnScreen, spawnCoords);
             }
         }
