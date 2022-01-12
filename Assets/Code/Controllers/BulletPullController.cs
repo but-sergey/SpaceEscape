@@ -34,14 +34,14 @@ namespace SpaceEscape
             for(int i = 0; i < SystemSettingsManager.BULLET_PULL_INITIAL_CAPACITY; i++)
             {
                 var bulletData = CreateBullet();
-                BulletOff(bulletData);
+                bulletData.Bullet.gameObject.SetActive(false);
                 _bulletList.Add(bulletData);
             }
         }
 
         public void BulletOff(BulletGameData bulletData)
         {
-            bulletData.Bullet.gameObject.SetActive(false);
+            bulletData.Bullet.gameObject.SetActive(true);
         }
 
         public BulletGameData GetBullet(float force, int damage)
@@ -57,12 +57,7 @@ namespace SpaceEscape
                 }
             }
 
-            if(bulletData == null)
-            {
-                bulletData = CreateBullet();
-                _bulletList.Add(bulletData);
-            }
-            else
+            if(bulletData != null)
             {
                 bulletData.Bullet.gameObject.SetActive(true);
             }
@@ -73,7 +68,6 @@ namespace SpaceEscape
                 _player.position.y + _firePointOffset.y,
                 0.0f);
             bulletData.BulletDamage = damage;
-            
 
             return bulletData;
         }

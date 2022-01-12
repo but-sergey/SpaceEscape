@@ -7,7 +7,6 @@
             var inputSystem  = new InputSystem(controllers);
             var playerSystem = new PlayerSystem(controllers, data);
             var cameraSystem = new CameraSystem(controllers, data, playerSystem);
-            var moveSystem   = new MoveSystem(controllers, inputSystem, playerSystem, cameraSystem);
             var bulletSystem = new BulletSystem(controllers, data, playerSystem, cameraSystem);
             var fireSystem   = new FireSystem(controllers, inputSystem, bulletSystem);
             var enemySystem  = new EnemySystem(controllers, data, bulletSystem, playerSystem);
