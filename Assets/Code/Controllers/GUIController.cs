@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+
 namespace SpaceEscape
 {
     public sealed class GUIController : IInitialization, IExecute, ICleanup
@@ -100,11 +101,11 @@ namespace SpaceEscape
 
         private void OnGameExit()
         {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+//#else
+//            Application.Quit();
+//#endif
 
         }
     }

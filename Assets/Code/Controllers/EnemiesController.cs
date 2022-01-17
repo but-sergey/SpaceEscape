@@ -156,7 +156,7 @@ namespace SpaceEscape
             {
                 if(callerInstanceId == EnemiesOnMap[j].EnemyPrefab.GetInstanceID())
                 {
-                    EnemiesOnMap[j].EnemyCurrentHealth -= bulletDamage;
+                    //EnemiesOnMap[j].EnemyCurrentHealth -= bulletDamage;
                     //Debug.Log($"{EnemiesOnMap[j].EnemyCurrentHealth}, damage: {bulletDamage}");
                 }
             }
