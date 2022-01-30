@@ -13,6 +13,7 @@ namespace SpaceEscape
         [SerializeField] private string _mainMenuDataPath;
         [SerializeField] private string _backgroundDataPath;
         [SerializeField] private string _cameraMoveDataPath;
+        [SerializeField] private string _soundsDataPath;
 
         private PlayerData _player;
         private LevelData _level;
@@ -21,6 +22,7 @@ namespace SpaceEscape
         private MainMenuData _mainMenu;
         private BackgroundData _backgroundData;
         private CameraMoveData _cameraMove;
+        private SoundsData _soundsData;
 
         public PlayerData Player
         {
@@ -112,6 +114,19 @@ namespace SpaceEscape
                 
                 return _cameraMove;
             }
+        }
+
+        public SoundsData SoundsData
+        {
+            get
+            {
+                if(_soundsData == null)
+                {
+                    _soundsData = Load<SoundsData>(Path.Combine(PathManager.Root, PathManager.Sounds, _soundsDataPath));
+                }
+                return _soundsData;
+            }
+            
         }
 
         private T Load<T>(string resourcesPath) where T : Object =>

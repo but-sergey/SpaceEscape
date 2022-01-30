@@ -19,3 +19,4 @@ MonoBehaviour:
   _mainMenuDataPath: MainMenuData
   _backgroundDataPath: BackgroundData
   _cameraMoveDataPath: CameraSettings
+  _soundsDataPath: SoundsData

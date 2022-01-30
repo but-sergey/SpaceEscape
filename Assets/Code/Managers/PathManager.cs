@@ -11,5 +11,6 @@
         public const string GUI = "GUI";
         public const string Background = "Background";
         public const string CameraMove = "CameraMove";
+        public const string Sounds = "Sounds";
     }
 }

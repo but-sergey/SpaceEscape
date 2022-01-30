@@ -4,7 +4,7 @@ namespace SpaceEscape
 {
     internal sealed class Controllers : IInitialization, IExecute, ILateExecute, ICleanup
     {
-        private readonly int _controllersInitCount = 8;
+        //private readonly int _controllersInitCount = 8;
         private readonly List<IInitialization> _initializationControllers;
         private readonly List<IExecute> _executeControllers;
         private readonly List<ILateExecute> _lateControllers;
@@ -12,10 +12,10 @@ namespace SpaceEscape
 
         internal Controllers()
         {
-            _initializationControllers = new List<IInitialization>(_controllersInitCount);
-            _executeControllers = new List<IExecute>(_controllersInitCount);
-            _lateControllers = new List<ILateExecute>(_controllersInitCount);
-            _cleanupControllers = new List<ICleanup>(_controllersInitCount);
+            _initializationControllers = new List<IInitialization>();
+            _executeControllers = new List<IExecute>();
+            _lateControllers = new List<ILateExecute>();
+            _cleanupControllers = new List<ICleanup>();
         }
 
         internal Controllers Add(IController controller)
