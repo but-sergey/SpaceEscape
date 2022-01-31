@@ -25,6 +25,8 @@ namespace SpaceEscape
         
         private int _enemiesToMax;
 
+        public List<Enemy> EnemiesList => _enemiesPoolList;
+
         // потом поменять на нормальные координаты спауна
         // координаты относительно позиции игрока
         private float _tempXmin = -5.5f;

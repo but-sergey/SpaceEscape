@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176e8936d277f784f9b9ab3c7d0ecf72, type: 3}
   m_Name: SoundsData
   m_EditorClassIdentifier: 
+  _mainAudioMixer: {fileID: 24100000, guid: 4ae9d07555f46fb439ef46ea7285e66e, type: 2}
   _laserSound: {fileID: 8300000, guid: 1aa307d71e2e28942aae99b7b582f9a5, type: 3}
+  _blastSound: {fileID: 8300000, guid: b2e8adecf23564646b7d98940f21b946, type: 3}
